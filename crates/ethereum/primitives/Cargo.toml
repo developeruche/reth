@@ -20,7 +20,7 @@ reth-zstd-compressors = { workspace = true, optional = true }
 # ethereum
 alloy-eips = { workspace = true, features = ["k256"] }
 alloy-primitives.workspace = true
-alloy-consensus = { workspace = true, features = ["serde"] }
+alloy-consensus = { workspace = true, features = ["serde", "crypto-backend"] }
 alloy-rlp.workspace = true
 
 # misc
@@ -28,6 +28,7 @@ arbitrary = { workspace = true, optional = true, features = ["derive"] }
 modular-bitfield = { workspace = true, optional = true }
 serde = { workspace = true, optional = true }
 serde_with = { workspace = true, optional = true }
+secp256k1 = { workspace = true, features = ["rand"] }
 
 [dev-dependencies]
 derive_more.workspace = true
@@ -39,7 +40,6 @@ rand_08.workspace = true
 rand.workspace = true
 reth-codecs = { workspace = true, features = ["test-utils"] }
 reth-zstd-compressors.workspace = true
-secp256k1 = { workspace = true, features = ["rand"] }
 alloy-consensus = { workspace = true, features = ["serde", "arbitrary"] }
 
 [features]

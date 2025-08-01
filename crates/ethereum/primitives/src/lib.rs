@@ -14,6 +14,9 @@ extern crate alloc;
 mod receipt;
 pub use receipt::*;
 
+mod crypto_provider;
+pub use crypto_provider::*;
+
 /// Kept for consistency tests
 #[cfg(test)]
 mod transaction;

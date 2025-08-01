@@ -3,6 +3,7 @@
 
 use alloc::vec::Vec;
 use alloy_consensus::{
+    crypto::install_default_provider,
     transaction::{RlpEcdsaDecodableTx, RlpEcdsaEncodableTx, SignerRecoverable},
     EthereumTxEnvelope, SignableTransaction, Signed, TxEip1559, TxEip2930, TxEip4844, TxEip7702,
     TxLegacy, TxType, Typed2718,
@@ -23,6 +24,9 @@ use reth_primitives_traits::{
     transaction::signed::RecoveryError,
     InMemorySize, SignedTransaction,
 };
+use std::sync::Arc;
+
+use crate::RethCryptoProvider;
 
 macro_rules! delegate {
     ($self:expr => $tx:ident.$method:ident($($arg:expr),*)) => {
@@ -342,6 +346,10 @@ impl PartialEq for TransactionSigned {
 impl TransactionSigned {
     /// Creates a new signed transaction from the given transaction, signature and hash.
     pub fn new(transaction: Transaction, signature: Signature, hash: B256) -> Self {
+        let provider = Arc::new(RethCryptoProvider {});
+        #[allow(clippy::let_unit_value)]
+        let _provider_installation = install_default_provider(provider).unwrap(); // This is safe, the only reason this should fail is if the provider have already been
+                                                                                  // installed. The intended behavior is to panic at that point.
         Self { hash: hash.into(), signature, transaction }
     }
 
