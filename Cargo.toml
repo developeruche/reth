@@ -160,6 +160,7 @@ members = [
     "examples/custom-beacon-withdrawals",
     "testing/ef-tests/",
     "testing/testing-utils",
+    "crates/ext-revm"
 ]
 default-members = ["bin/reth"]
 exclude = ["book/sources", "book/cli"]
@@ -438,6 +439,7 @@ reth-trie-sparse = { path = "crates/trie/sparse" }
 reth-zstd-compressors = { path = "crates/storage/zstd-compressors", default-features = false }
 reth-ress-protocol = { path = "crates/ress/protocol" }
 reth-ress-provider = { path = "crates/ress/provider" }
+ext-revm = { path = "crates/ext-revm" }
 
 # revm
 revm = { version = "22.0.1", default-features = false }
